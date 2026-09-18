@@ -9,15 +9,20 @@ type LogoProps = {
  * Rays radiate from the centre and are stretched horizontally to read as an eye.
  * Replace with your exported logo any time by dropping it in /public.
  */
+// Round so server (Node) and client (browser) serialize the same string.
+// Math.cos/Math.sin can differ in their last digits across engines,
+// which otherwise causes a React hydration mismatch.
+const r = (n: number) => Math.round(n * 100) / 100;
+
 export default function Logo({ withText = false, className = "" }: LogoProps) {
   const rays = Array.from({ length: 40 }, (_, i) => {
     const angle = (i / 40) * Math.PI * 2;
     // stretch horizontally -> almond / eye silhouette
     const outer = 26 * Math.abs(Math.cos(angle)) + 9;
-    const x1 = 32 + Math.cos(angle) * 5;
-    const y1 = 32 + Math.sin(angle) * 5;
-    const x2 = 32 + Math.cos(angle) * outer;
-    const y2 = 32 + Math.sin(angle) * outer;
+    const x1 = r(32 + Math.cos(angle) * 5);
+    const y1 = r(32 + Math.sin(angle) * 5);
+    const x2 = r(32 + Math.cos(angle) * outer);
+    const y2 = r(32 + Math.sin(angle) * outer);
     return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
   });
 

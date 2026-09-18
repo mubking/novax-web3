@@ -1,29 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 export default function EcosystemPage() {
   return (
     <>
       <EcosystemHero />
-      <Web3Integration />
-      <InfoSplit
-        image="/eco-wallet.png"
-        imageAlt="Cards and coins in a wallet"
-        imageLeft
-        titleLead="Wallet"
-      />
-      <InfoSplit
-        image="/eco-dex.png"
-        imageAlt="Decentralized exchange network of tokens"
-        titleLead="Decentralized Exchange"
-        titleAccent="(DEX)"
-      />
-      <InfoSplit
-        image="/eco-staking.png"
-        imageAlt="Staking platform render"
-        imageLeft
-        titleLead="Staking Platform"
-      />
+      <Reveal>
+        <Web3Integration />
+      </Reveal>
+      <Reveal>
+        <InfoSplit
+          image="/eco-wallet.png"
+          imageAlt="Cards and coins in a wallet"
+          imageLeft
+          titleLead="Wallet"
+        />
+      </Reveal>
+      <Reveal>
+        <InfoSplit
+          image="/eco-dex.png"
+          imageAlt="Decentralized exchange network of tokens"
+          titleLead="Decentralized Exchange"
+          titleAccent="(DEX)"
+        />
+      </Reveal>
+      <Reveal>
+        <InfoSplit
+          image="/eco-staking.png"
+          imageAlt="Staking platform render"
+          imageLeft
+          titleLead="Staking Platform"
+        />
+      </Reveal>
     </>
   );
 }

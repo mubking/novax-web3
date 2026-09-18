@@ -1,12 +1,19 @@
 import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 export default function ServicesPage() {
   return (
     <>
       <ServicesHero />
-      <DigitalAssetManagement />
-      <OurFeatures />
-      <OurServices />
+      <Reveal>
+        <DigitalAssetManagement />
+      </Reveal>
+      <Reveal>
+        <OurFeatures />
+      </Reveal>
+      <Reveal>
+        <OurServices />
+      </Reveal>
     </>
   );
 }

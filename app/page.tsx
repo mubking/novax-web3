@@ -1,16 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import CallToAction from "@/components/CallToAction";
+import Reveal from "@/components/Reveal";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Features />
-      <Services />
-      <Products />
-      <Testimonials />
-      <CallToAction />
+      <Reveal>
+        <Features />
+      </Reveal>
+      <Reveal>
+        <Services />
+      </Reveal>
+      <Reveal>
+        <Products />
+      </Reveal>
+      <Reveal>
+        <Testimonials />
+      </Reveal>
+      <Reveal>
+        <CallToAction />
+      </Reveal>
     </>
   );
 }

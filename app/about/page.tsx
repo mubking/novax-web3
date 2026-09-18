@@ -1,15 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import CallToAction from "@/components/CallToAction";
+import Reveal from "@/components/Reveal";
 
 export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <WhyNovax />
-      <TeamValues />
-      <TeamGrid />
-      <CallToAction />
+      <Reveal>
+        <WhyNovax />
+      </Reveal>
+      <Reveal>
+        <TeamValues />
+      </Reveal>
+      <Reveal>
+        <TeamGrid />
+      </Reveal>
+      <Reveal>
+        <CallToAction />
+      </Reveal>
     </>
   );
 }
@@ -218,7 +227,6 @@ const team = [
   { name: "", role: "", image: "/card (1).png" },
   { name: "", role: "", image: "/card (2).png" },
   { name: "", role: "", image: "/card (3).png" },
-//   { name: "James Carter", role: "3D Artist", image: "/card (4).png" },
 ];
 
 function TeamGrid() {
