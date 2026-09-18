@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---- Design tokens (Tailwind v4) ------------------------------------ */
+@theme {
+  --color-bg: #0b090c;          /* page background            */
+  --color-surface: #131019;     /* raised sections            */
+  --color-card: #17121f;        /* cards                      */
+  --color-line: #241d2e;        /* borders                    */
+  --color-accent: #fa24c9;      /* brand magenta (from Figma) */
+  --color-accent-soft: #ff59dd;
+  --color-muted: #9a93a5;       /* body / secondary text      */
+
+  --font-display: var(--font-poppins);
+  --font-body: var(--font-poppins);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---- Base ----------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: #ffffff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Purple/magenta ambient glow that runs down both edges of the page */
+.page-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 0% 30%, rgba(250, 36, 201, 0.14), transparent 70%),
+    radial-gradient(55% 45% at 100% 65%, rgba(138, 43, 214, 0.16), transparent 70%),
+    radial-gradient(50% 30% at 100% 8%, rgba(250, 36, 201, 0.10), transparent 70%);
+}
+
+/* ---- Reusable pieces ------------------------------------------------ */
+@utility container-x {
+  width: 100%;
+  max-width: 80rem;      /* 1280px */
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Section eyebrow like "OUR FEATURES" with the second word in magenta */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Pink primary button used across the whole site */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.btn-accent:hover {
+  filter: brightness(1.08);
+}
+.btn-accent:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Gentle float for the hero coins (disabled under reduced-motion above) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
